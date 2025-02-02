@@ -154,7 +154,7 @@ finally:
 
 ### 5. **Verificador de Palabras con los Mismos Caracteres**
 **Excepciones**:
-- **`ValueError`**: Se asegura que solo se ingresen palabras alfabéticas, luego caracteres especiales o vacíos no son permitidos.
+- **`ValueError`**: Se asegura que solo se ingresen palabras alfabéticas usando isalpha(), además se verifica que la palabra no sea menor a 3 letras o vacía.
 - **Excepciones generales**: Se manejan posibles errores en el flujo de ejecución y se informa adecuadamente al usuario->"profesor".
 ```python
 # Recopilar la lista de palabras
