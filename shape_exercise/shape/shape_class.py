@@ -121,10 +121,6 @@ class Shape:
 
         return [True, len(visited)]
 
-    def _is_line(self, p1, p2, p3):
-        """Verifica si tres puntos son colineales usando determinante."""
-        return (p2.y - p1.y) * (p3.x - p2.x) == (p3.y - p2.y) * (p2.x - p1.x)
-
     def __str__(self) -> str:
         """Mostrar una representación agradable de la figura en cuestión."""
         output = "Vértices: "
