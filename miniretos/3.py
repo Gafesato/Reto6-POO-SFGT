@@ -19,10 +19,8 @@ def verificar_primos(lista_numeros: list[int]) -> list[int]:
             lista_primos.append(numero)  # El 2 es primo
         else:
             primo: bool = True
-            # Verificar en el rango del número completo es más largo
-            # La raíz es buena aproximación matemática
-            raiz: float = (numero**0.5) + 1
-            for i in range(2, raiz):
+            raiz: float = (numero**0.5) + 1  # Aproximación de la raíz cuadrada
+            for i in range(2, int(raiz)):
                 if numero % i == 0:
                     primo = False
                     break
@@ -34,18 +32,25 @@ def verificar_primos(lista_numeros: list[int]) -> list[int]:
 
 if __name__ == "__main__":
     print("Bienvenido al verificador de primos.")
-    print("A continuación va a digitar cuantos números quiera presionándo ENTER.")
-    print("Cuando desee terminar presione la tecla 's'.")
-    # Aquí voy a obtener la lista de números
+    print("A continuación va a digitar cuantos números quiera presionando ENTER.")
+    print("Cuando desee terminar, presione la tecla 's'.")
+    
     lista_numeros: list = []
     while True:
-        numero: str = input("Ingrese un número: ")
-        if numero == 's':
-            break
         try:
-            lista_numeros.append(int(numero))
+            numero: str = input("Ingrese un número: ")
+            if numero.lower() == 's':
+                break
+            lista_numeros.append(int(numero))  # Intentar convertir la entrada a un número entero
         except ValueError:
-            print("¡Error! El valor ingresado no es un número entero.")
+            print("¡Error! El valor ingresado no es un número entero válido.")
+        except Exception as e:
+            print(f"Error inesperado: {e}")
 
-    lista_primos: list[int] = verificar_primos(lista_numeros)
-    print(f"Los números primos en {lista_numeros} son {lista_primos}.")
+    try:
+        lista_primos: list[int] = verificar_primos(lista_numeros)
+        print(f"Los números primos en {lista_numeros} son {lista_primos}.")
+    except Exception as e:
+        print(f"Ocurrió un error al verificar los primos: {e}")
+    finally:
+        print("Gracias por usar el verificador de primos.")

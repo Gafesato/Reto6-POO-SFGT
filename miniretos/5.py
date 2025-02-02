@@ -1,5 +1,5 @@
 # Autor: Samuel Fernando Garzón Toro
-# Reto 5
+# Reto 6
 
 """
 La función toma una lista de palabras e identifica aquellas que tienen los mismos
@@ -34,12 +34,25 @@ if __name__ == "__main__":
     # Recopilar la lista de palabras
     lista_palabras: list[str] = []
     while True:
-        palabra: str = input("Ingrese una palabra: ").strip()
-        if palabra == 's':
-            break
-        lista_palabras.append(palabra)
+        try:
+            palabra: str = input("Ingrese una palabra: ").strip()
+            if palabra.lower() == 's':
+                break
+            if not palabra.isalpha():
+                raise ValueError("Solo se permiten palabras con caracteres alfabéticos.")
+            lista_palabras.append(palabra)
+        except ValueError as e:
+            print(f"¡Error! {e}")
+        except Exception as e:
+            print(f"Error inesperado: {e}")
 
-    # Identificar palabras con los mismos caracteres
-    lista_palabras_iguales: list[str] = verificar_palabras(lista_palabras)
-    print(f"Las palabras con los mismos caracteres en {lista_palabras} son:")
-    print(lista_palabras_iguales)
+    try:
+        # Identificar palabras con los mismos caracteres
+        lista_palabras_iguales: list[str] = verificar_palabras(lista_palabras)
+        print(f"Las palabras con los mismos caracteres en {lista_palabras} son:")
+        print(lista_palabras_iguales)
+    except Exception as e:
+        print(f"Ocurrió un error inesperado al procesar las palabras: {e}")
+    finally:
+        print("Gracias por usar el verificador de palabras iguales.")
+

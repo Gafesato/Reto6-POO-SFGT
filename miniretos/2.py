@@ -15,7 +15,7 @@ class MyError(Exception):
 
     Args:
         message: Mensaje informativo sobre la excepción.
-  """
+    """
 
     def __init__(self, message):
         super().__init__(message)
@@ -23,6 +23,14 @@ class MyError(Exception):
 
 def verificar_palindromo(palabra: str) -> bool:
     """Verifica si una palabra es un palíndromo."""
+    # Validación de entrada para asegurarse que la palabra no esté vacía
+    if not palabra:
+        raise MyError("La palabra no puede estar vacía.")
+
+    # Asegurarse de que la palabra sea solo en minúsculas y sin espacios
+    if ' ' in palabra or not palabra.islower():
+        raise MyError("La palabra debe estar en minúsculas y no debe contener espacios.")
+
     iterador_normal: int = 0
     iterador_reverso: int = len(palabra) - 1
 
@@ -43,3 +51,7 @@ if __name__ == "__main__":
         print(f"La palabra '{palabra}' es palíndromo: {resultado}")
     except MyError as error:
         print(f"Error: {error}")
+    except Exception as error:
+        print(f"Ha ocurrido un error inesperado: {error}")
+    finally:
+        print("Gracias por usar el verificador de palíndromos.")

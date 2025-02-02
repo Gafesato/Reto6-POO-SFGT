@@ -14,7 +14,7 @@ class MyError(Exception):
 
     Args:
         message: Mensaje informativo sobre la excepción.
-  """
+    """
 
     def __init__(self, message):
         super().__init__(message)
@@ -43,11 +43,21 @@ try:
     a: int = int(input("Primer número: "))
     b: int = int(input("Segundo número: "))
     operacion: str = input("Operación (+, -, *, /): ")
+
+    # Verificar si la operación ingresada es válida
+    if operacion not in ["+", "-", "*", "/"]:
+        raise MyError("Operación no válida.")
+
     resultado = calculadora(a, b, operacion)
     print(f"({a}, {b}, '{operacion}') -> {resultado}")
+
 except ValueError:
-    print("La entrada debe ser numérica.")
+    print("La entrada debe ser numérica. Por favor ingrese un número válido.")
 except ZeroDivisionError as error:
     print(f"Error: {error}")
 except MyError as error:
-  print(f"Error: {error}")
+    print(f"Error: {error}")
+except Exception as error:
+    print(f"Ha ocurrido un error inesperado: {error}")
+finally:
+    print("Gracias por usar la calculadora. ¡Hasta pronto!")
