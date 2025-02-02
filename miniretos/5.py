@@ -40,6 +40,8 @@ if __name__ == "__main__":
                 break
             if not palabra.isalpha():
                 raise ValueError("Solo se permiten palabras con caracteres alfabéticos.")
+            if len(palabra) < 3:
+                raise ValueError("Ingrese una palabra con 3 o más letras.")
             lista_palabras.append(palabra)
         except ValueError as e:
             print(f"¡Error! {e}")
